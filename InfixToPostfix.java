@@ -29,17 +29,14 @@ class InfixToPostfix {
 
             char ch = infix.charAt(i);
 
-            // If operand, add to postfix
             if (Character.isLetterOrDigit(ch)) {
                 postfix += ch;
             }
 
-            // If opening bracket, push into stack
             else if (ch == '(') {
                 stack.push(ch);
             }
 
-            // If closing bracket
             else if (ch == ')') {
 
                 while (!stack.isEmpty() && stack.peek() != '(') {
@@ -49,7 +46,6 @@ class InfixToPostfix {
                 stack.pop(); // Remove '('
             }
 
-            // If operator
             else {
                 while (!stack.isEmpty()
                         && precedence(stack.peek()) >= precedence(ch)) {
@@ -60,7 +56,6 @@ class InfixToPostfix {
             }
         }
 
-        // Pop remaining operators
         while (!stack.isEmpty()) {
             postfix += stack.pop();
         }
